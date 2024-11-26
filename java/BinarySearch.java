@@ -42,10 +42,24 @@ final class BinarySearch {
   * @return binarySearch
   */
   static int binarySearch(final int[] userArray, final int userNumber,
-                          final int lowIndex, final int highIndex) {
-    // solve this function!
-
-    return -1;
+                        final int lowIndex, final int highIndex) {
+    if (lowIndex > highIndex) {
+        // Base case: number not found
+        return -1;
+    }
+    // Calculate the middle index
+    int middleIndex = (lowIndex + highIndex) / 2;
+    
+    if (userArray[middleIndex] == userNumber) {
+        // Base case: number found
+        return middleIndex;
+    } else if (userArray[middleIndex] > userNumber) {
+        // Recur on the left half
+        return binarySearch(userArray, userNumber, lowIndex, middleIndex - 1);
+    } else {
+        // Recur on the right half
+        return binarySearch(userArray, userNumber, middleIndex + 1, highIndex);
+    }
   }
 
   public static void main(final String[] args) {
